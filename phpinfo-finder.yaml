@@ -1,0 +1,27 @@
+id: phpinfo-finder
+info:
+  name: PHPinfo() Endpoint Finder
+  author: 0x1h3r
+  severity: high
+  description: This scanner checks for the presence of a phpinfo() endpoint.
+tags:
+  - phpinfo
+  - web
+requests:
+  - name: phpinfo-finder
+    type: http
+    method: GET
+    path:
+      - "/phpinfo.php"
+      - "/phpinfo"
+      - "/info.php"
+      - "/info"
+    matchers:
+      - type: word
+        words:
+          - "phpinfo()"
+    filters:
+      - type: status
+        status:
+          - 200
+    description: Check for phpinfo() endpoint
